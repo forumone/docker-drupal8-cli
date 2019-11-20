@@ -3,6 +3,7 @@
 Images built from this repository are used as bases for working with Drupal 8 sites via the command line. They are roughly equivalent to images such as `drush/drush`, and intended to be used as companion images to `forumone/drupal8`.
 
 1. Neither Drush nor Drupal Console are included. It is expected that users will either install or bind-mount the necessary scripts to use.
+   - Instead of including Drush, the directory `/var/www/html/vendor/bin` has been added to \$PATH to allow easier access to installed dependencies.
 2. These images include a small utility, `f1-ext-install`, to simplify the task of installing common extensions. For example, to install Memcached, one only needs to add this to their Dockerfile:
 
    ```sh
@@ -12,6 +13,7 @@ Images built from this repository are used as bases for working with Drupal 8 si
 ## PHP Versions and Tags
 
 - Currently supported by PHP:
+
   - `7.3`
   - `7.2`
   - `7.1`
