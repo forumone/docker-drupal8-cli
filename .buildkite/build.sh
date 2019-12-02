@@ -71,7 +71,7 @@ for tag in "$version" "${extra_tags[@]}"; do
   tags+=("$repository:$tag")
 done
 
-build base PHP_VERSION="$version"
+build PHP_VERSION="$version"
 
 if should-push; then
   echo "--- Push"
