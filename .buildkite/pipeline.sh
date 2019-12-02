@@ -30,6 +30,11 @@ create-step() {
   - label: ":docker: :php: v$minor"
     commands:
       - bash .buildkite/build.sh $version $minor ${php_versions[$version]}
+YAML
+
+  # Use authentication plugins if we're building somewhere other than on a local machine
+  if test "${BUILDKITE_PROJECT_PROVIDER:-local}" != local; then
+    cat <<YAML
     plugins:
       - seek-oss/aws-sm#v2.0.0:
           env:
@@ -38,13 +43,12 @@ create-step() {
           username: f1builder
           password-env: DOCKER_LOGIN_PASSWORD
 YAML
+  fi
 }
 
 # For each key (i.e., PHP version), we output a Buildkite pipeline step and upload it
 # via the agent.
-{
-  echo "steps:"
-  for version in "${!php_versions[@]}"; do
-    create-step "$version"
-  done
-} | buildkite-agent pipeline upload
+echo "steps:"
+for version in "${!php_versions[@]}"; do
+  create-step "$version"
+done
