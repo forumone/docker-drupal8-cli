@@ -25,6 +25,19 @@ extra_tags=("$@")
 # in the function call.
 declare -a tags
 
+# Usage: should-push
+#
+# This function determines if the built images should be pushed up to the Docker Hub.
+# There are a few conditions:
+#   1. This must not be a local build,
+#   2. This must not be triggered by a pull request, and
+#   3. The branch being built must be master.
+should-push() {
+  test "$BUILDKITE_PIPELINE_PROVIDER" != local &&
+    test "$BUILDKITE_PULL_REQUEST" == false &&
+    test "$BUILDKITE_BRANCH" == master
+}
+
 # Usage:
 #
 #   # Set up the tags array variable before calling
@@ -58,9 +71,9 @@ for tag in "$version" "${extra_tags[@]}"; do
   tags+=("$repository:$tag")
 done
 
-build base PHP_VERSION="$version"
+build PHP_VERSION="$version"
 
-if test "$BUILDKITE_BRANCH" == master && test "$BUILDKITE_PULL_REQUEST" == false; then
+if should-push; then
   echo "--- Push"
   docker push "$repository"
 fi
