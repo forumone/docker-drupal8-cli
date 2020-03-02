@@ -29,6 +29,8 @@ create-step() {
   # Output the Buildkite step for building this particular version
   cat <<YAML
   - label: ":docker: :php: v$minor"
+    concurrency: 5
+    concurrency_group: "f1/docker"
     commands:
       - bash .buildkite/build.sh $version $minor ${php_versions[$version]}
 YAML
