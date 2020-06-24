@@ -15,6 +15,7 @@ RUN set -ex \
     mysql-client \
     openssh \
     rsync \
+    bash \
   && { \
     echo 'memory_limit=-1'; \
   } > /usr/local/etc/php/php-cli.ini
