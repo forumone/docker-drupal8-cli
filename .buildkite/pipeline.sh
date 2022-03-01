@@ -15,8 +15,8 @@ declare -A php_versions=(
   # [7.1.33]=""
   [7.2.33]=""
   [7.3.32]=""
-  [7.4.25]="7"
-  [8.0.12]="8 latest"
+  [7.4.28]="7"
+  [8.0.16]="8 latest"
 )
 
 # Usage: create-step <version>
