@@ -7,20 +7,22 @@ Images built from this repository are used as bases for working with Drupal 8 si
 2. These images include a small utility, `f1-ext-install`, to simplify the task of installing common extensions. For example, to install Memcached, one only needs to add this to their Dockerfile:
 
    ```sh
-   f1-ext-install pecl:memcached
+    # Install the core SOAP extension
+    f1-ext-install builtin:soap
+
+    # Install memcached from PECL
+    f1-ext-install pecl:memcached
    ```
 
 ## PHP Versions and Tags
 
 - Currently supported by PHP:
-
-  - `8.0`, `8.0-xdebug`
-  - `7.4`, `7.4-xdebug`
-  - `7.3`, `7.3-xdebug`
+  - `8.0`
+  - `7.4`
 
 - End-of-life for legacy projects:
-
-  - `7.2`, `7.2-xdebug`
+  - `7.3`
+  - `7.2`
 
 The tags `7` and `8` are available for quick testing when a specific version isn't needed.
 
