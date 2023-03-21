@@ -10,13 +10,8 @@ shopt -s extglob
 # series as "5" (since it's the latest PHP 5 release).
 declare -A php_versions=(
   # [PHP version]=<extra tags>
-  # [5.6.40]="5"
-  # [7.0.33]=""
-  # [7.1.33]=""
-  [7.2.33]=""
-  [7.3.32]=""
   [7.4.28]="7"
-  [8.0.16]="8 latest"
+  [8.0.28]="8 latest"
 )
 
 # Usage: create-step <version>
